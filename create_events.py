@@ -23,11 +23,10 @@ events= pd.read_excel('fruition_blink.xlsx')
 my_events = events[events['Raw Filename'].str.contains('EEG BG2 DMI Day 10.eeg')]
 
 
-my_events['Location (s)']
-
 my_events
 
 #use mne.read_annotations to create mne.annotation object
+
 
 my_annot = mne.Annotations(onset = my_events['Location (s)'], 
                          duration = [1, 1, 1, 1, 1, 1, 1], 
@@ -40,8 +39,10 @@ raw.set_annotations(my_annot)
 
 print(raw.annotations)
 
-
+# create events from annotations
+# can be used to epoch data
 events, _ = mne.events_from_annotations(raw, event_id= dict(F=1))
 
+# plot raw with events
 raw.plot(events=events)
 
