@@ -10,21 +10,21 @@ datatset file
 @author: claire
 """
 
-import pandas as pd
+#import pandas as pd
 import os.path as op
 
+from config import (data_path, df_spreadsheet)
+
+#data_path = '/home/claire/Documents/scripts-local/EEG_Fruitions/Data'
+
+#df = pd.read_excel((op.join(data_path, 'fruition_blink.xlsx')))
+
+df= df_spreadsheet # spreadsheet with event details for all datasets
 
 
-data_path = '/home/claire/Documents/scripts-local/EEG_Fruitions/Data'
-
-df = pd.read_excel((op.join(data_path, 'fruition_blink.xlsx')))
-
-sessions = df['Raw Filename'].unique()
-
-
-for sess in sessions:
+for sess in df_spreadsheet['Raw Filename'].unique():
     
-    sess_name = sessions[sess].replace('.eeg', '')  # remove file extension that does not appear on folder name
+    sess_name = sess.replace('.eeg', '')  # remove file extension that does not appear on folder name
 
     events_filename = op.join(data_path, sess_name, 'events.tsv')
     
