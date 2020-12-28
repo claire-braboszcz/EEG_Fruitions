@@ -7,16 +7,16 @@ Created on Mon Dec  7 20:52:08 2020
 """
 
 from mne_bids import write_raw_bids, BIDSPath
-from mne_bids.utils import print_dir_tree
 
 from mne_bids.copyfiles import copyfile_brainvision
 
 import mne
+import os
 
 from config import (data_path, 
                     bids_root, 
                     subject_ids, 
-                    sessions,
+                   # sessions,
                     tasks, 
                     df_spreadsheet)
 
@@ -27,10 +27,17 @@ import pandas as pd
 if not os.path.exists(bids_root):
     os.makedirs(bids_root)
     
+#sessions=[]
 
+#for sess in df_spreadsheet['Raw Filename'].unique():
+#    sess= sess.replace('.eeg', '').replace(" ", "_")
+#    sessions.append(sess)
+
+session =0
 
 for subj in subject_ids:
     for sess in df_spreadsheet['Raw Filename'].unique():
+        session+=1
         for task in tasks:
         # we define filenames that we will use
             ori_sess_name = sess.replace('.eeg', '') # original name
@@ -49,8 +56,9 @@ for subj in subject_ids:
             raw.info['recording_time'] = df_spreadsheet['File Saved Time'][df_spreadsheet['Raw Filename'] == sess].unique()[0]
 
             
+                        
             bids_path = BIDSPath(subject = str(subj), 
-                                 session = '0-1',#sess_name, 
+                                 session = str(session).zfill(2),#sess_name, 
                                  task = task, 
                                  root = bids_root)        
     
