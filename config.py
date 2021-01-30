@@ -24,17 +24,18 @@ data_path='/home/claire/Documents/scripts-local/EEG_Fruitions/Data'
 
 bids_root = os.path.join(data_path, 'EEG-Fruitions-BIDS')
 
-df_spreadsheet = pd.read_excel((os.path.join(data_path, 'fruition_blink.xlsx')))
+df_spreadsheet = pd.read_excel((os.path.join(data_path, 'fruition_blink_tmp.xlsx')))
 
 tasks = ['fruitions']
 subject_ids = ['01']
 
 # define sesssions name from spreadsheet
-sessions=[]
+n_sessions =28
+exclude_session = [14, 22]
 
-for sess in df_spreadsheet['Raw Filename'].unique():
-    sess= sess.replace('.eeg', '').replace(" ", "_")
-    sessions.append(sess)
+#for sess in df_spreadsheet['Raw Filename'].unique():
+#    sess= sess.replace('.eeg', '').replace(" ", "_")
+#    sessions.append(sess)
 
 
 
