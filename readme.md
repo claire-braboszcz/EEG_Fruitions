@@ -33,3 +33,8 @@ The events are named as "Trial types/Grade/Door". This way in subsequent analysi
 
 The length of epochs can be changed using the parameters tmin and tmax in `config.py`
 
+## EEGLAB
+
+The raw data can be loaded in EEGLAB using the load EEG-BID function. Note that the raw data do not contain the events and would requiere to write a specific matlab script to add them.
+
+The epoch data (in `.fif` format) can be loaded in EEGLAB using the 'File IO' menu (or `pop_fileio` function). 
