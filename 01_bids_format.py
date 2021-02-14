@@ -81,19 +81,7 @@ for subj in subject_ids:
                 vhdr_new= os.path.join(data_orig, bids_path.basename + '.vhdr')
                 copyfile_brainvision(vhdr_ori, vhdr_new, verbose=True)
                 
-                # Insert events from spreadsheet in raw
-                #------------------------------------------
-                # specify the trial type
-                df_spreadsheet['trial'] = np.where(df_spreadsheet['Grade'] != 'NF Blink', 'F', 'NF')
-                df_spreadsheet['Door']=df_spreadsheet['Door'].replace(np.nan, 'NF')
-                
-                df_spreadsheet['trial_type'] = df_spreadsheet['trial'] + '/' + df_spreadsheet['Grade'] + '/' + df_spreadsheet['Door'] 
-                #df_spreadsheet['trial_type']=df_spreadsheet['trial_type'].replace(np.nan, 'NF')
-                #get annotations corresponding to current eeg file
-                my_annot = mne.Annotations(onset =  df_spreadsheet['Location (s)'][df_spreadsheet['Raw Filename'] == sess], 
-                                         duration = 1, 
-                                         description= df_spreadsheet['trial_type'][df_spreadsheet['Raw Filename'] == sess], 
-                                         )
+               
                 
                 
                 
@@ -101,19 +89,13 @@ for subj in subject_ids:
                 # add annotations to raw object
                 raw = mne.io.read_raw_brainvision(vhdr_new, preload=False)
                 
-                raw.set_annotations(my_annot)
                 
-                #print(raw.annotations)
-                
-                # create events from annotations
-                # can be used to epoch data
-                events, event_id = mne.events_from_annotations(raw)
-                
-                
+                             
                 #------------------------------
                 
                 # read data and add useful metadata
                 
+                # WARNING: these did not save as it does not correspond to field in the FIF standard - this information is still available in the fruition_blink spreadsheet
                 
                 raw.info['line_freq'] =  int(df_spreadsheet['Electric Hz'][df_spreadsheet['Raw Filename'] == sess].unique()[0]) # specify power line as requiered by BIDS
                 raw.info['recording_place'] = df_spreadsheet['Setting'][df_spreadsheet['Raw Filename'] == sess].unique()[0] # keep track of data recording place
