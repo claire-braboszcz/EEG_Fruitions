@@ -2,7 +2,7 @@
 
 # EEG Fruition project
 
-The data and folder architecture follows the EEG-BIDS format. 
+The data and folder architecture follows the EEG-BIDS format (script `01_bids_formats`). 
   
 
 ## Configuration  
