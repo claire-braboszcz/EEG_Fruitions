@@ -78,7 +78,6 @@ fname = FileNames()
 # filename for folders
 fname.add('bids_root', bids_root)
 fname.add('folder_preproc', bids_root_der + '/eeg_preprocess/{subject}/{session}/eeg/') # folder name and path to store pre-processed files
-fname.add('reports_dir', reports_dir)
 
 
 
@@ -90,8 +89,4 @@ fname.add('filt','{folder_preproc}/{subject}_{session}_{task}_filt_{fmin}_{fmax}
 fname.add('epochs','{folder_preproc}/{subject}_{session}_{task}_epo.fif')
 
 
-# Filenames for MNE reports
-
-#fname.add('report', '{reports_dir}/{subject}_{session}_{task}_report.h5')
-fname.add('report_html', '{reports_dir}/{subject}_{session}_{task}_report.html')
 
