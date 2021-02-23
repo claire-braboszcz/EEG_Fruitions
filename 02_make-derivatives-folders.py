@@ -4,7 +4,9 @@
 # In[ ]:
 
 """
-Create BIDS-compatible derivatives folder for each participant
+Create BIDS-compatible derivatives folder for each participant. 
+You can adapt and run this function if you want to create new derivatives folders.
+New folders name and paths should be added to the fname structure from config.py file.
 
 """
 
@@ -32,7 +34,10 @@ if not os.path.exists(bids_root_der):
 print('Making folders for subject:', subj, 'session:', sess)
 
 
-f_preproc=fname.folder_preproc(bids_root_der=bids_root_der, subject='sub-'+ str(subj).zfill(2), session='ses-'+ str(sess).zfill(2))
+
+f_preproc=fname.folder_preproc(bids_root_der=bids_root_der, 
+                               subject='sub-'+ str(subj).zfill(2), 
+                               session='ses-'+ str(sess).zfill(2))
 
 
 

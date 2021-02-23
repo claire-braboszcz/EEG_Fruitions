@@ -7,7 +7,9 @@ Created on Wed Dec  2 11:13:15 2020
 EEG Fruition config file
 ===================
 
-Configuration parameters for the EEG Fruitions project
+Configuration parameters for the EEG Fruitions project.
+Specifies variables for running tasks from the dodo.py files, as well as for using
+in each scripts.
 
 adapted from https://github.com/AaltoImagingLanguage/conpy/tree/master/scripts
 
@@ -28,7 +30,9 @@ bids_root_der = os.path.join(bids_root, 'derivatives')
 
 reports_dir = os.path.join(bids_root_der, 'reports')
 
-df_spreadsheet = pd.read_excel((os.path.join(data_path, 'fruition_blink_tmp.xlsx')))
+df_spreadsheet = pd.read_excel((os.path.join(data_path, 'fruition_blink_tmp.xlsx'))) 
+# note this tmp file excludes lines corresponding from session 14 and 22 that were throwing an error
+# use the exclude_session parameter when looping through sessions from the fruition_blink.xlsx file 
 
 tasks = ['fruitions']
 subject_ids = ['01']

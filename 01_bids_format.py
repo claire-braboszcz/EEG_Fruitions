@@ -3,6 +3,14 @@
 """
 Created on Mon Dec  7 20:52:08 2020
 
+This files takes the EEG files from a local copy of the original files from the Dropbox folder
+and format them according to the EEG-BIDS format (see reference article https://www.nature.com/articles/s41597-019-0104-8).
+
+This script thus needs to be run before being able to run functions from the dodo.py file. 
+
+
+
+
 @author: claire
 """
 

@@ -3,6 +3,13 @@
 """
 Created on Sat Jan 30 22:55:12 2021
 
+Apply filter to data stored in EEG-BIDS format.
+The script can be easily adapted to used different filters. This page can be used
+as reference:
+https://mne.tools/stable/auto_tutorials/preprocessing/plot_30_filtering_resampling.html#tut-filter-resample
+
+
+
 @author: claire
 """
 
@@ -35,12 +42,13 @@ session='ses-'+ str(sess).zfill(2)
 task='task-'+ task
 
 
+# load raw data 
 raw = mne.io.read_raw_brainvision(fname.raw(
                                    subject=subject, 
                                    session=session,
                                    task= task),  preload=True)  
 
-filt_raw =  raw.copy()
+filt_raw = raw.copy()
 
 
 # specify the filter

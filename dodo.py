@@ -3,6 +3,14 @@
 """
 Created on Mon Dec  7 20:44:04 2020
 
+Before using this file you should run the 01_bids_format.py script to create the 
+correct folder architecture and filenames for the EEG files.
+
+This file gather the tasks that can be performed on the EEG data that are 
+organized following the BIDS format. 
+
+
+
 @author: claire
 """
 
@@ -27,7 +35,10 @@ DOIT_CONFIG = dict(
 
               
 def task_make_derivative_folders():
-        """Step 01: Create folder architecture """
+        """Step 01: Create folder architecture 
+        - run this to create new folders to hold derivatives EEG files
+                
+        """
         
         for subj in subject_ids:
             for sess in n_sessions:
@@ -43,7 +54,10 @@ def task_make_derivative_folders():
                             )
 
 def task_filter_continuuous():
-        """Step 02: Filter continuuous data """
+        """Step 02: Filter continuuous data 
+        Takes in the raw data and apply a filter
+        
+        """
         
         for subj in subject_ids:
             for task in tasks:
@@ -75,7 +89,11 @@ def task_filter_continuuous():
 
 
 def task_epoch_data():
-        """Step 03: Epoch continuuous data """
+        """Step 03: Epoch continuuous data 
+        Takes in the data filtered at step 02, adds in the events and epoch the data.
+        
+        
+        """
         
         for subj in subject_ids:
             for task in tasks:

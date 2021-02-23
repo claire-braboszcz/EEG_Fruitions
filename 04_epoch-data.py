@@ -3,6 +3,9 @@
 """
 Created on Sun Feb 14 12:02:17 2021
 
+This script takes continuuous data, adds the events from the spreadsheet then
+cuts the data into time windows (epochs) from tmin before to tmax after the event.
+
 @author: claire
 """
 
@@ -37,7 +40,7 @@ subject='sub-'+ str(subj).zfill(2)
 session='ses-'+ str(sess).zfill(2)
 task='task-'+ task
 
-
+# load the data 
 raw = mne.io.read_raw_fif(fname.filt(
                                    subject=subject, 
                                    session=session,
@@ -73,15 +76,14 @@ events, event_id = mne.events_from_annotations(raw)
 
 
 #------------------------------
-# Find onsets of blinks based on Fp1 activity. Create epochs around them
 
-# Passive viewing Task
 print('Epoch the data ')
 
 
 epochs = mne.Epochs(raw, events, event_id= event_id, tmin=tmin, tmax=tmax, baseline=baseline,  preload=True)
 
 
+# save data
 epochs.save(fname.epochs(subject = subject, session= session, task= task), overwrite = True)
 
 
